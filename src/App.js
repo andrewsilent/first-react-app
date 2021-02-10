@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import Greeting from './components/Greeting/'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    const user = {
+      firstName: 'John',
+      url: 'http://localhost:3000/favicon.ico'
+    }
+    return (
+      <div>
+        <Greeting name={user.firstName} photo={user.url} />
+        <Greeting name='Andrew' photo={user.url} sayHello />
+        <Greeting name='Emily' photo={user.url} sayHello />
+      </div>
+    )
+  }
 }
 
 export default App;
