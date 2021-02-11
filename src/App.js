@@ -3,16 +3,21 @@ import './App.css';
 import Greeting from './components/Greeting/'
 
 class App extends Component {
-  render() {
-    const user = {
+  constructor(props) {
+    super(props);
+    this.state = {
       firstName: 'John',
+      lastName: 'Smith',
       url: 'http://localhost:3000/favicon.ico'
     }
+  }
+  render() {
+    const { firstName, lastName, url } = this.state;
     return (
       <div>
-        <Greeting name={user.firstName} photo={user.url} />
-        <Greeting name='Andrew' photo={user.url} sayHello />
-        <Greeting name='Emily' photo={user.url} sayHello />
+        <Greeting name={firstName} photo={url} />
+        <Greeting name='Andrew' photo={url} sayHello />
+        <Greeting name='Emily' photo={url} sayHello />
       </div>
     )
   }
