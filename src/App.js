@@ -1,11 +1,10 @@
-import React, { Component, useState } from 'react';
-import './App.css';
-import StopWatch from './components/StopWatch/';
+import React from 'react';
+import Counter from './components/Counter/';
 
 function App(props) {
   return (
     <>
-      <StopWatch />
+      <Counter />
     </>
   )
 }
