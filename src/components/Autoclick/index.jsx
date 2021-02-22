@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const Autoclick = (props) => {
+const Autoclick = props => {
   const { autoclickerToggle } = props;
   return (
     <div>

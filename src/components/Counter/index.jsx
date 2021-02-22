@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import CountElement from "../CountElement";
-import CountControls from "../CountControls";
-import StepControls from "../StepControls";
-import Autoclick from "../Autoclick";
+import React, { Component } from 'react';
+import CountElement from '../CountElement';
+import CountControls from '../CountControls';
+import StepControls from '../StepControls';
+import Autoclick from '../Autoclick';
 
 class Counter extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       count: 0,
@@ -26,7 +26,7 @@ class Counter extends Component {
     }
   };
 
-  stepHandle = (step) => {
+  stepHandle = step => {
     this.setState({ step: this.state.step + step });
   };
 
@@ -93,13 +93,13 @@ class Counter extends Component {
     this.setState({ autoclickTimeout: this.state.autoclickTimeout - 1 });
   };
 
-  componentDidMount() {
+  componentDidMount () {
     if (!this.state.autoclick) {
       this.autoclickerToggle();
     }
   }
 
-  render() {
+  render () {
     const { count, step, countMode, autoclickTimeout } = this.state;
     return (
       <div>

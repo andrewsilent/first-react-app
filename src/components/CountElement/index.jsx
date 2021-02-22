@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const CountElement = (props) => {
+const CountElement = props => {
   const { count, step, autoclickTimeout } = props;
   return (
     <div>
