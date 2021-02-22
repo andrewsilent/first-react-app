@@ -5,8 +5,6 @@ const Autoclick = props => {
   return (
     <div>
       <button onClick={autoclickerToggle}>autoclick</button>
-      <button>unknown</button>
-      <button>unknown</button>
     </div>
   );
 };
