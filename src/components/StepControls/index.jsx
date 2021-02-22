@@ -1,19 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 
-class StepControls extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { addStep, subStep } = this.props;
-    return (
-      <div>
-        <button onClick={addStep}>Increase step</button>
-        <button onClick={subStep}>Decrease step</button>
-      </div>
-    );
-  }
-}
+const StepControls = (props) => {
+  const { changeMode, stepHandle } = props;
+  return (
+    <div>
+      <button onClick={changeMode}>Change mode</button>
+      <button onClick={()=>{stepHandle(+1)}}>Step +</button>
+      <button onClick={()=>{stepHandle(-1)}}>Step -</button>
+    </div>
+  );
+};
 
 export default StepControls;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import CountElement from "../CountElement";
 import CountControls from "../CountControls";
-// import StepControls from "../StepControls";
-import Mode from "../CountControls/Mode";
+import StepControls from "../StepControls";
+import Autoclick from "../Autoclick";
 
 class Counter extends Component {
   constructor(props) {
@@ -10,49 +10,114 @@ class Counter extends Component {
     this.state = {
       count: 0,
       step: 1,
-      mode: false,
+      countMode: false,
+      autoclick: false,
+      autoclickTimeout: 30,
+      autoclickInterval: 1000,
+      intervalId: null,
     };
   }
 
-  addCount = () => {
-    this.setState({ count: this.state.count + this.state.step });
+  countHandle = () => {
+    if (this.state.countMode) {
+      this.setState({ count: this.state.count - this.state.step });
+    } else {
+      this.setState({ count: this.state.count + this.state.step });
+    }
   };
 
-  subCount = () => {
-    this.setState({ count: this.state.count - this.state.step });
+  stepHandle = (step) => {
+    this.setState({ step: this.state.step + step });
   };
 
-  addStep = () => {
-    this.setState({ step: this.state.step + 1 });
-  };
-
-  subStep = () => {
-    this.setState({ step: this.state.step - 1 });
-  };
-
-  resetCount = () => {
-    this.setState({ count: 0, step: 1, mode: false });
+  resetCounter = () => {
+    this.autoclickerReset();
+    this.setState({
+      count: 0,
+      step: 1,
+      countMode: false,
+      autoclick: false,
+      autoclickTimeout: 30,
+    });
   };
 
   changeMode = () => {
-    this.setState({ mode: !this.state.mode });
+    this.setState({ countMode: !this.state.countMode });
   };
 
+  autoclickerToggle = () => {
+    const {
+      autoclick,
+      intervalId,
+      autoclickTimeout,
+      autoclickInterval,
+    } = this.state;
+    if (autoclick) {
+      clearInterval(intervalId);
+      this.setState({ autoclick: !autoclick });
+    } else {
+      if (autoclickTimeout > 0) {
+        const newIntervalId = setInterval(() => {
+          this.autoclick();
+        }, autoclickInterval);
+        this.setState({
+          autoclick: !autoclick,
+          intervalId: newIntervalId,
+        });
+      } else {
+        this.autoclickerReset();
+      }
+    }
+  };
+
+  autoclick = () => {
+    const { autoclickTimeout, autoclick } = this.state;
+    if (autoclickTimeout > 0 && autoclick) {
+      this.countHandle();
+      this.autoclickTimeoutHandle();
+    } else {
+      this.autoclickerReset();
+    }
+  };
+
+  autoclickerReset = () => {
+    const { autoclick, intervalId } = this.state;
+    clearInterval(intervalId);
+    this.setState({
+      autoclick: !autoclick,
+      autoclickTimeout: 30,
+    });
+  };
+
+  autoclickTimeoutHandle = () => {
+    this.setState({ autoclickTimeout: this.state.autoclickTimeout - 1 });
+  };
+
+  componentDidMount() {
+    if (!this.state.autoclick) {
+      this.autoclickerToggle();
+    }
+  }
+
   render() {
-    const { count, step, mode } = this.state;
+    const { count, step, countMode, autoclickTimeout } = this.state;
     return (
       <div>
-        <CountElement count={count} step={step} />
-        <CountControls
-          mode={mode}
-          addCount={this.addCount}
-          subCount={this.subCount}
-          addStep={this.addStep}
-          subStep={this.subStep}
-          resetCount={this.resetCount}
+        <CountElement
+          count={count}
+          step={step}
+          autoclickTimeout={autoclickTimeout}
         />
-        <Mode changeMode={this.changeMode} />
-        {/* <StepControls addStep={this.addStep} subStep={this.subStep} /> */}
+        <CountControls
+          countMode={countMode}
+          countHandle={this.countHandle}
+          resetCounter={this.resetCounter}
+        />
+        <StepControls
+          stepHandle={this.stepHandle}
+          changeMode={this.changeMode}
+        />
+        <Autoclick autoclickerToggle={this.autoclickerToggle} />
       </div>
     );
   }

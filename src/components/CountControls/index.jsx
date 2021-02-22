@@ -1,27 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-class CountControls extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      addCount,
-      subCount,
-      addStep,
-      subStep,
-      resetCount,
-      mode,
-    } = this.props;
-    return (
-      <div>
-        <button onClick={mode ? addStep : addCount}>{mode ? 'Step +' : 'Count +'}</button>
-        <button onClick={mode ? subStep : subCount}>{mode ? 'Step -' : 'Count -'}</button>
-        <button onClick={resetCount}>reset</button>
-      </div>
-    );
-  }
-}
+const CountControls = (props) => {
+  const { countHandle, resetCounter, countMode } = props;
+  return (
+    <div>
+      <button onClick={countHandle}>{countMode ? "Counter -" : "Counter +"}</button>
+      <button onClick={resetCounter}>reset</button>
+    </div>
+  );
+};
 
 export default CountControls;

@@ -1,14 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Mode extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { changeMode } = this.props;
-    return <button onClick={changeMode}>Change mode</button>;
-  }
-}
+const Mode = (props) => {
+  const { changeMode } = props;
+  return <button onClick={changeMode}>Change count mode</button>;
+};
 
 export default Mode;
