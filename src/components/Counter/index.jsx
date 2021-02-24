@@ -116,6 +116,7 @@ class Counter extends Component {
         <StepControls
           stepHandle={this.stepHandle}
           changeMode={this.changeMode}
+          step={this.state.step}
         />
         <Autoclick autoclickerToggle={this.autoclickerToggle} />
       </div>
