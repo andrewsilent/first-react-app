@@ -8,6 +8,10 @@ import {
   Link,
   BrowserRouter,
 } from 'react-router-dom';
+import ArrayElementUsage from './pages/ArrayElementUsage';
+import HighOrderCompotent from './pages/HighOrderCompotent';
+import Context from './pages/Context';
+import ContextAppPage from './pages/ContextAppPage';
 
 const App = props => {
   return (
@@ -29,6 +33,18 @@ const App = props => {
           <li>
             <Link to='/counter'>Counter</Link>
           </li>
+          <li>
+            <Link to='/ArrayElementUsage'>ArrayElementUsage</Link>
+          </li>
+          <li>
+            <Link to='/context'>Context</Link>
+          </li>
+          <li>
+            <Link to='/contextapp'>ContextApp</Link>
+          </li>
+          <li>
+            <Link to='/hoc'>HighOrderCompotent</Link>
+          </li>
         </ul>
       </nav>
 
@@ -46,6 +62,10 @@ const App = props => {
           <UsersLoader />
         </Route>
         <Route path='/counter' component={Counter} />
+        <Route path='/ArrayElementUsage' component={ArrayElementUsage} />
+        <Route path='/context' component={Context} />
+        <Route path='/contextapp' component={ContextAppPage} />
+        <Route path='/hoc' component={HighOrderCompotent} />
         <Route path='*' component={NotFound} />
       </Switch>
     </BrowserRouter>
