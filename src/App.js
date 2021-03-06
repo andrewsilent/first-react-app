@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
-// import Form from './components/Form';
-import Hooks from './components/Hooks';
-import ContextAppPage from './pages/ContextAppPage';
-import StopWatchPage from './pages/StopWatch';
+import React from 'react';
+import Chat from './components/Chat';
+import TestReducer from './components/TestReducer';
+import UsersLoader from './components/UsersLoader';
+import UsersLoaderWithHooks from './components/UsersLoaderWithHooks';
 
 const App = props => {
-  const [isVisible, setIsVisible] = useState(true);
-
   return (
-    <StopWatchPage />
-    // <>
-    //   <button
-    //     onClick={() => {
-    //       setIsVisible(!isVisible);
-    //     }}
-    //   >
-    //     switch
-    //   </button>
-    //   {isVisible && <Hooks />}
-    // </>
+    <>
+      <Chat />
+    </>
   );
 };
 
